@@ -26,6 +26,7 @@ class DropDown extends React.Component {
       <div>
         <label>{this.props.label}:</label> &nbsp;
         <select onChange={this.handleChange}>
+        <option>Select</option>
           {options}
         </select>
       </div>

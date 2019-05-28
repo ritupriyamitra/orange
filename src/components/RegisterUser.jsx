@@ -10,12 +10,11 @@ class RegisterUser extends React.Component{
   			gender:null,
   			location:null,
   			deviceId:null,
-        language:null,
-        genger:null
+        language:null
 
   		};
-      this.languages=['English','Bengali','Hindi'];
-      this.genders=['Male','Female','Others'];
+      this.languages=['ENGLISH','HINDI','BENGALI'];
+      this.genders=['MALE','FEMALE','OTHERS'];
   	}
   setName = (name) =>{
     this.setState({
@@ -50,6 +49,18 @@ class RegisterUser extends React.Component{
 
 submit =()=>{
   console.log(this.state);
+  fetch('http://localhost:8080/blue/user', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(this.state)
+  }).then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    console.log(data);
+  });
 }
 
 	render(){
