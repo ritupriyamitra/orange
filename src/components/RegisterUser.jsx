@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from './TextField';
 import DropDown from './DropDown';
+import { BASE_URL } from '../common/Constants';
+
 
 class RegisterUser extends React.Component{
   	constructor(props){
@@ -13,8 +15,7 @@ class RegisterUser extends React.Component{
         language:null
 
   		};
-      this.languages=['ENGLISH','HINDI','BENGALI'];
-      this.genders=['MALE','FEMALE','OTHERS'];
+
   	}
   setName = (name) =>{
     this.setState({
@@ -47,9 +48,13 @@ class RegisterUser extends React.Component{
 
   }
 
+
+
+
+
 submit =()=>{
   console.log(this.state);
-  fetch('http://localhost:8080/blue/user', {
+  fetch(BASE_URL+'/user', {
     method: 'post',
     headers: {
       'Accept': 'application/json',
@@ -63,14 +68,16 @@ submit =()=>{
   });
 }
 
+
+
 	render(){
 		return (
 		<div>
 			<h4>Register User</h4>
 			<TextField label="Name"  placeholder ="Enter the Name" valueChange={this.setName}/>
-      <DropDown label ="Gender" options={this.genders} valueSelected={this.setGender}/>
+      <DropDown label ="Gender"  valueSelected={this.setGender} url={`${BASE_URL}/values/genders`}/>
     	<TextField label="Location" placeholder ="Enter the address" valueChange={this.setLocation}/>
-      <DropDown label="Language" options={this.languages} valueSelected={this.setLanguage}/>
+      <DropDown label="Language"  valueSelected={this.setLanguage} url={`${BASE_URL}/values/languages`}/>
 			<TextField label="DeviceId" placeholder ="Enter the DeviceId" valueChange={this.setDeviceId}/>
 			<button onClick={this.submit}>Submit</button>
 		</div>
