@@ -2,13 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import RegisterUser from "./components/RegisterUser";
+import LandingPage from "./components/LandingPage";
+
+
 
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
-      	<RegisterUser />
+       <LandingPage/>
+
       </header>
     </div>
   );

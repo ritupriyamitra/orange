@@ -3,6 +3,11 @@ import TextField from './TextField';
 import DropDown from './DropDown';
 import { BASE_URL } from '../common/Constants';
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+
+
 
 class RegisterUser extends React.Component{
   	constructor(props){
@@ -48,11 +53,8 @@ class RegisterUser extends React.Component{
 
   }
 
-
-
-
-
 submit =()=>{
+  var self = this;
   console.log(this.state);
   fetch(BASE_URL+'/user', {
     method: 'post',
@@ -65,6 +67,9 @@ submit =()=>{
     return response.json();
   }).then(function(data) {
     console.log(data);
+    cookies.set('userId', data, { path: '/' });
+    console.log("PrimaryKey:"+cookies.get('userId'));
+    self.props.registerHandler();
   });
 }
 
